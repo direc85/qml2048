@@ -46,9 +46,9 @@ ApplicationWindow
         if(Storage.getState("name"))
             scoreName = Storage.getState("name")
         shareMode = false
-        if(Storage.getState("shared"))
-            if(Storage.getState("shared") === "yes")
-                shareMode = true
+//        if(Storage.getState("shared"))
+//            if(Storage.getState("shared") === "yes")
+//                shareMode = true
         if(app.scoreName.length > 0)
             mainPage.newGameRequest()
         else

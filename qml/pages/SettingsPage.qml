@@ -32,13 +32,15 @@ Dialog {
                 text: qsTr("Share score")
                 description: qsTr("Send your highscore if you have more than 2048 tile")
                 visible: inputname.text !== ""
+                // Disable, because the service doesn't exist
+                enabled: false
             }
         }
     }
 
     onOpened: {
         inputname.text = app.scoreName
-        sharedinput.checked = app.shareMode
+        sharedinput.checked = false //app.shareMode
     }
 
     onAccepted: {
