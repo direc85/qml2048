@@ -29,23 +29,25 @@ Page {
         id: gameArea
 
         Text {
-            y:10
+            id: playerName
+            y: Theme.paddingLarge
             width: parent.width
             horizontalAlignment: Text.AlignHCenter
-            height: 20
             anchors.horizontalCenter: parent.horizontalCenter
             text: app.scoreName
-            font.pixelSize: 30
+            font.pixelSize: Theme.fontSizeSmall
             font.bold: true
-            color: "#ffffff"
+            color: Theme.primaryColor
         }
 
         ScoreArea {
             id: score
-            anchors.horizontalCenter: parent.horizontalCenter
-            width: parent.width - 10
-            height: 240
-            y: 20
+            anchors {
+                top: playerName.bottom
+                horizontalCenter: parent.horizontalCenter
+            }
+            width: parent.width - Theme.paddingLarge
+            height: Theme.itemSizeHuge
         }
 
         Text {
@@ -57,7 +59,7 @@ Page {
             text: "Community highscore: " + app.communityScore + " (best tile " + app.communityTile + ")"
             font.pixelSize: 20
             font.bold: true
-            color: "#ffffff"
+            color: Theme.primaryColor
             visible: app.communityScore > 100
         }
 
@@ -82,9 +84,9 @@ Page {
         Board {
             id: board
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: 90
+            anchors.bottomMargin: Theme.paddingLarge
             anchors.horizontalCenter: parent.horizontalCenter
-            width: parent.width - 10
+            width: parent.width - Theme.paddingLarge * 2
 
             onMerged: score.addScore(value, grid_size)
             onEnd: {
@@ -135,7 +137,6 @@ Page {
         width: gameArea.width
         height: gameArea.height
         y: - height
-        color: "#80000000"
 
         onNewGameClicked: {
             hide()

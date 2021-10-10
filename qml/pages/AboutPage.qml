@@ -29,7 +29,7 @@ Page {
     SilicaFlickable {
         id: aboutFlickable
         anchors.fill: parent
-        contentHeight: header.height + column.height
+        contentHeight: header.height + column.height + Theme.paddingLarge
 
         PageHeader {
             id: header
@@ -42,7 +42,7 @@ Page {
                 top: header.bottom
                 horizontalCenter: parent.horizontalCenter
             }
-            width: Math.min(Screen.width, aboutFlickable.width)
+            width: Math.min(Screen.width, aboutFlickable.width) - Theme.paddingLarge
             spacing: Theme.paddingLarge
 
             Image {
