@@ -76,34 +76,34 @@ Page {
                 onClicked: about.open()
             }
         }
-    }
 
-    Board {
-        id: board
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 90
-        anchors.horizontalCenter: parent.horizontalCenter
-        width: parent.width - 10
 
-        onMerged: score.addScore(value, grid_size)
-        onEnd: {
-            loseScreen.show()
-            if(app.scoreMode <= 2 && app.scoreBest >= 32) app.sendscore()
-            else if(app.scoreMode <= 3 && app.scoreBest >= 128) app.sendscore()
-            else if(app.scoreBest >= 2^(app.scoreMode + 7)) app.sendscore()
+        Board {
+            id: board
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 90
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: parent.width - 10
+
+            onMerged: score.addScore(value, grid_size)
+            onEnd: {
+                loseScreen.show()
+                if(app.scoreMode <= 2 && app.scoreBest >= 32) app.sendscore()
+                else if(app.scoreMode <= 3 && app.scoreBest >= 128) app.sendscore()
+                else if(app.scoreBest >= 2^(app.scoreMode + 7)) app.sendscore()
+            }
+
+            SwipeArea {
+                id: swipe
+                anchors.fill: parent
+
+                onSwipeUp: board.moveTilesUp()
+                onSwipeDown: board.moveTilesDown()
+                onSwipeLeft: board.moveTilesLeft()
+                onSwipeRight: board.moveTilesRight()
+            }
         }
-
-        SwipeArea {
-            id: swipe
-            anchors.fill: parent
-
-            onSwipeUp: board.moveTilesUp()
-            onSwipeDown: board.moveTilesDown()
-            onSwipeLeft: board.moveTilesLeft()
-            onSwipeRight: board.moveTilesRight()
-        }
     }
-
 
     Dialog {
         id: newgame
