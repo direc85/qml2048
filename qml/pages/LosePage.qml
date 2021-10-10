@@ -25,6 +25,10 @@ Rectangle {
 
     signal newGameClicked()
 
+    TouchBlocker {
+        anchors.fill: parent
+    }
+
     Column {
         anchors.centerIn: parent
         width: parent.width - 40
