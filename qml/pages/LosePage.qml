@@ -21,18 +21,23 @@
 import QtQuick 2.6
 import Sailfish.Silica 1.0
 
-Rectangle {
-
+Item {
     signal newGameClicked()
 
     TouchBlocker {
         anchors.fill: parent
     }
 
+    Rectangle {
+        anchors.fill: parent;
+        color: "black"
+        opacity: 0.75
+    }
+
     Column {
         anchors.centerIn: parent
-        width: parent.width - 40
-        spacing: 10
+        width: parent.width - Theme.paddingLarge * 2
+        spacing: Theme.paddingLarge * 2
 
         Text {
             text: ":("
@@ -49,7 +54,7 @@ Rectangle {
             wrapMode: Text.WordWrap
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
-            text: "It looks like there are no more moves available"
+            text: qsTr("It looks like there are no more moves available")
 
         }
 
