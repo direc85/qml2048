@@ -73,7 +73,7 @@ Page {
 
             MenuItem {
                 text: qsTr("About")
-                onClicked: about.open()
+                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
         }
 
@@ -127,13 +127,6 @@ Page {
         onAccepted: {
             mainPage.newGameRequest(slider.value)
         }
-    }
-
-    About {
-        id: about
-        version: "v.0.4.0"
-        height: parent.height
-        width: parent.width
     }
 
     LosePage {
