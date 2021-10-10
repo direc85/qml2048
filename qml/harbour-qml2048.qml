@@ -22,9 +22,10 @@
 import QtQuick 2.6
 
 import Sailfish.Silica 1.0
-import "pages/storage.js" as Storage
-import "pages/speed.js" as Speed
+import "js/storage.js" as Storage
+import "js/speed.js" as Speed
 import "pages"
+import "components"
 
 ApplicationWindow
 {

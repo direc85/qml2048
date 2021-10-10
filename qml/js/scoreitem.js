@@ -19,7 +19,7 @@
  */
 
 function fade() {
-    var comp = Qt.createComponent("FadeText.qml")
+    var comp = Qt.createComponent("../components/FadeText.qml")
     if (comp.status == Component.Ready) {
         var fadeObj = comp.createObject(score)
         if (fadeObj == null) {

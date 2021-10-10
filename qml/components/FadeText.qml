@@ -20,7 +20,7 @@
 
 import QtQuick 2.6
 import Sailfish.Silica 1.0
-import "storage.js" as Storage
+import "../js/storage.js" as Storage
 
 Text {
     id: container

@@ -21,8 +21,8 @@
 
 import QtQuick 2.6
 import Sailfish.Silica 1.0
-import "tile.js" as Tile
-import "storage.js" as Storage
+import "../js/tile.js" as Tile
+import "../js/storage.js" as Storage
 
 Rectangle {
 

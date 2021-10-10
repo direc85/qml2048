@@ -20,7 +20,7 @@
 
 import QtQuick 2.6
 import Sailfish.Silica 1.0
-import "scoreitem.js" as ScoreItem
+import "../js/scoreitem.js" as ScoreItem
 
 Item {
     id: container
