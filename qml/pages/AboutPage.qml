@@ -26,6 +26,8 @@ import "../components"
 Page {
     id: page
 
+    property string version: "0.5.0-1"
+
     SilicaFlickable {
         id: aboutFlickable
         anchors.fill: parent
@@ -57,7 +59,7 @@ Page {
             AboutLabel {
                 font.pixelSize: Theme.fontSizeLarge
                 color: Theme.highlightColor
-                text: "2048\n(QML version)"
+                text: "2048 v"+version+" (QML)"
             }
 
             AboutLabel {

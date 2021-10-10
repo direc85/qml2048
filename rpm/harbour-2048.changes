@@ -1,3 +1,13 @@
+* Sun Oct 10 2021 Matti Viljanen <matti.viljanen@kapsi.fi> 0.5.0
+- Noarch build
+- Clean leftover Harmattan project files
+- Move/update changelog
+- Fix AboutPage layout
+- Separate SettingsPage
+- Use more theme colors and sizes
+- Allow one letter names (previous work)
+- Fix typo (previous work)
+
 * Wed 10 Sep 2014 Fabien Proriol 0.3
 - SailfishOS build
 - Various fixes
