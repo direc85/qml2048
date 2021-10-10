@@ -28,6 +28,23 @@ Page {
         anchors.fill: parent
         id: gameArea
 
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("Settings")
+                onClicked: settingsPage.open()
+            }
+
+            MenuItem {
+                text: qsTr("New game")
+                onClicked: newgame.open()
+            }
+
+            MenuItem {
+                text: qsTr("About")
+                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
+            }
+        }
+
         Text {
             id: playerName
             y: Theme.paddingLarge
@@ -61,23 +78,6 @@ Page {
             font.bold: true
             color: Theme.primaryColor
             visible: app.communityScore > 100
-        }
-
-        PullDownMenu {
-            MenuItem {
-                text: qsTr("Settings")
-                onClicked: settingsPage.open()
-            }
-
-            MenuItem {
-                text: qsTr("New game")
-                onClicked: newgame.open()
-            }
-
-            MenuItem {
-                text: qsTr("About")
-                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
-            }
         }
 
 
