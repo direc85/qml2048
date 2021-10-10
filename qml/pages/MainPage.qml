@@ -63,7 +63,7 @@ Page {
         PullDownMenu {
             MenuItem {
                 text: qsTr("Settings")
-                onClicked: settings.open()
+                onClicked: settingsPage.open()
             }
 
             MenuItem {
@@ -149,61 +149,8 @@ Page {
         }
     }
 
-    Dialog {
-        id: settings
-
-        SilicaFlickable {
-            VerticalScrollDecorator {}
-
-            anchors.fill: parent
-            contentHeight: column.height + Theme.paddingLarge
-
-            Column {
-                id: column
-                width: parent.width
-                spacing: Theme.paddingLarge
-
-
-                DialogHeader {
-                    title: qsTr("Settings")
-                }
-
-
-                TextField {
-                    id: inputname
-                    anchors { left: parent.left; right: parent.right; }
-                    label: qsTr("Your name for highscore")
-                    placeholderText: qsTr("Your name for highscore")
-                }
-                Switch {
-                    id: strangeworkarround
-                    icon.source: "image://theme/icon-m-speaker-mute"
-                }
-                TextSwitch {
-                    id: sharedinput
-                    text: qsTr("Share score")
-                    description: qsTr("Send your highscore if you have more than 2048 tile")
-                    visible: inputname.text !== ""
-                }
-            }
-        }
-
-        onOpened: {
-            inputname.text = app.scoreName
-            sharedinput.checked = app.shareMode
-        }
-
-        onAccepted: {
-            board.focus = true
-            settings.close()
-            app.setName(inputname.text)
-            app.setShared(sharedinput.checked)
-            mainPage.newGameRequest()
-        }
-        onCanceled: {
-            board.focus = true
-            settings.close()
-        }
+    SettingsPage {
+        id: settingsPage
     }
 
     function newGameRequest(size) {
@@ -214,6 +161,6 @@ Page {
 
     function firstStart()
     {
-        settings.open()
+        settingsPage.open()
     }
 }

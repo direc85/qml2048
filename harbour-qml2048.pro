@@ -8,6 +8,7 @@ DISTFILES += \
     qml/cover/CoverPage.qml \
     qml/harbour-qml2048.qml \
     qml/pages/ScoreArea.qml \
+    qml/pages/SettingsPage.qml \
     qml/pages/SwipeArea.qml \
     qml/pages/Cell.qml \
     qml/pages/About.qml \
