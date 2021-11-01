@@ -19,32 +19,52 @@
  */
 
 
-import QtQuick 2.0
+import QtQuick 2.6
 import Sailfish.Silica 1.0
+import "../components"
 
 Page {
     SilicaFlickable {
         anchors.fill: parent
         id: gameArea
 
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("Settings")
+                onClicked: settingsPage.open()
+            }
+
+            MenuItem {
+                text: qsTr("New game")
+                onClicked: newgame.open()
+            }
+
+            MenuItem {
+                text: qsTr("About")
+                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
+            }
+        }
+
         Text {
-            y:10
+            id: playerName
+            y: Theme.paddingLarge
             width: parent.width
             horizontalAlignment: Text.AlignHCenter
-            height: 20
             anchors.horizontalCenter: parent.horizontalCenter
             text: app.scoreName
-            font.pixelSize: 30
+            font.pixelSize: Theme.fontSizeSmall
             font.bold: true
-            color: "#ffffff"
+            color: Theme.primaryColor
         }
 
         ScoreArea {
             id: score
-            anchors.horizontalCenter: parent.horizontalCenter
-            width: parent.width - 10
-            height: 240
-            y: 20
+            anchors {
+                top: playerName.bottom
+                horizontalCenter: parent.horizontalCenter
+            }
+            width: parent.width - Theme.paddingLarge
+            height: Theme.itemSizeHuge
         }
 
         Text {
@@ -56,54 +76,37 @@ Page {
             text: "Community highscore: " + app.communityScore + " (best tile " + app.communityTile + ")"
             font.pixelSize: 20
             font.bold: true
-            color: "#ffffff"
+            color: Theme.primaryColor
             visible: app.communityScore > 100
         }
 
-        PullDownMenu {
-            MenuItem {
-                text: qsTr("Settings")
-                onClicked: settings.open()
+
+        Board {
+            id: board
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: Theme.paddingLarge
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: parent.width - Theme.paddingLarge * 2
+
+            onMerged: score.addScore(value, grid_size)
+            onEnd: {
+                loseScreen.show()
+                if(app.scoreMode <= 2 && app.scoreBest >= 32) app.sendscore()
+                else if(app.scoreMode <= 3 && app.scoreBest >= 128) app.sendscore()
+                else if(app.scoreBest >= 2^(app.scoreMode + 7)) app.sendscore()
             }
 
-            MenuItem {
-                text: qsTr("New game")
-                onClicked: newgame.open()
-            }
+            SwipeArea {
+                id: swipe
+                anchors.fill: parent
 
-            MenuItem {
-                text: qsTr("About")
-                onClicked: about.open()
+                onSwipeUp: board.moveTilesUp()
+                onSwipeDown: board.moveTilesDown()
+                onSwipeLeft: board.moveTilesLeft()
+                onSwipeRight: board.moveTilesRight()
             }
         }
     }
-
-    Board {
-        id: board
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 90
-        anchors.horizontalCenter: parent.horizontalCenter
-        width: parent.width - 10
-
-        onMerged: score.addScore(value, grid_size)
-        onEnd: {
-            loseScreen.show()
-            if(app.scoreMode <= 2 && app.scoreBest >= 32) app.sendscore()
-            else if(app.scoreMode <= 3 && app.scoreBest >= 128) app.sendscore()
-            else if(app.scoreBest >= 2^(app.scoreMode + 7)) app.sendscore()
-        }
-
-        SwipeArea {
-            id: swipe
-            anchors.fill: parent
-
-            onSwipeUp: board.moveTilesUp()
-            onSwipeDown: board.moveTilesDown()
-            onSwipeLeft: board.moveTilesLeft()
-            onSwipeRight: board.moveTilesRight()
-        }
-    }
-
 
     Dialog {
         id: newgame
@@ -129,19 +132,11 @@ Page {
         }
     }
 
-    About {
-        id: about
-        version: "v.0.4.0"
-        height: parent.height
-        width: parent.width
-    }
-
     LosePage {
         id: loseScreen
         width: gameArea.width
         height: gameArea.height
         y: - height
-        color: "#80000000"
 
         onNewGameClicked: {
             hide()
@@ -149,61 +144,8 @@ Page {
         }
     }
 
-    Dialog {
-        id: settings
-
-        SilicaFlickable {
-            VerticalScrollDecorator {}
-
-            anchors.fill: parent
-            contentHeight: column.height + Theme.paddingLarge
-
-            Column {
-                id: column
-                width: parent.width
-                spacing: Theme.paddingLarge
-
-
-                DialogHeader {
-                    title: qsTr("Settings")
-                }
-
-
-                TextField {
-                    id: inputname
-                    anchors { left: parent.left; right: parent.right; }
-                    label: qsTr("Your name for highscore")
-                    placeholderText: qsTr("Your name for highscore")
-                }
-                Switch {
-                    id: strangeworkarround
-                    icon.source: "image://theme/icon-m-speaker-mute"
-                }
-                TextSwitch {
-                    id: sharedinput
-                    text: qsTr("Share score")
-                    description: qsTr("Send your highscore if you have more than 2048 tile")
-                    visible: inputname.text !== ""
-                }
-            }
-        }
-
-        onOpened: {
-            inputname.text = app.scoreName
-            sharedinput.checked = app.shareMode
-        }
-
-        onAccepted: {
-            board.focus = true
-            settings.close()
-            app.setName(inputname.text)
-            app.setShared(sharedinput.checked)
-            mainPage.newGameRequest()
-        }
-        onCanceled: {
-            board.focus = true
-            settings.close()
-        }
+    SettingsPage {
+        id: settingsPage
     }
 
     function newGameRequest(size) {
@@ -214,6 +156,6 @@ Page {
 
     function firstStart()
     {
-        settings.open()
+        settingsPage.open()
     }
 }

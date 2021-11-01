@@ -18,16 +18,28 @@
  * Authors: Fabien Proriol
  */
 
-#include <sailfishapp.h>
-#include <QtQuick>
+function fade() {
+    var comp = Qt.createComponent("../components/FadeText.qml")
+    if (comp.status == Component.Ready) {
+        var fadeObj = comp.createObject(score)
+        if (fadeObj == null) {
+            console.log("error creating fade object")
+            console.log(comp.errorString())
+            return
+        }
 
-int main(int argc, char *argv[])
-{
-    QGuiApplication *app = SailfishApp::application(argc, argv);
-    QQuickView *view = SailfishApp::createView();
-
-    view->setSource(SailfishApp::pathTo("qml/main.qml"));
-    view->showFullScreen();
-
-    return app->exec();
+        fadeObj.width = score.width
+        fadeObj.height = score.height
+        fadeObj.x = 0
+        fadeObj.y = 0
+        fadeObj.text = score.text
+        fadeObj.font.pixelSize = score.font.pixelSize
+        fadeObj.font.bold = score.font.bold
+        fadeObj.color = score.color
+        fadeObj.fade()
+    } else {
+        console.log("error loading fade component")
+        console.log(comp.errorString())
+        return
+    }
 }

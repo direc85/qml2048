@@ -18,9 +18,9 @@
  * Authors: Fabien Proriol
  */
 
-import QtQuick 2.0
+import QtQuick 2.6
 import Sailfish.Silica 1.0
-import "scoreitem.js" as ScoreItem
+import "../js/scoreitem.js" as ScoreItem
 
 Item {
     id: container
@@ -29,35 +29,37 @@ Item {
     property int value
 
     Rectangle {
+        id: bgRect
         width: parent.width * 0.9
         height: parent.height * 0.6
         radius: 6
         anchors.centerIn: parent
-        color: "#bbada0"
-        Column {
-            anchors.fill: parent
-            Text {
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: parent.height * 0.25
-                font.bold: true
-                color: "#eee4da"
-                text: container.text
-            }
-            Text {
-                id: score
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: parent.height * 0.6
-                font.bold: true
-                color: "#ffffff"
-                text: container.value
+        color: Theme.highlightBackgroundColor
+        opacity: 0.125
+    }
+    Column {
+        anchors.fill: bgRect
+        Text {
+            anchors.horizontalCenter: parent.horizontalCenter
+            font.pixelSize: parent.height * 0.25
+            font.bold: true
+            color: Theme.highlightColor
+            text: container.text
+        }
+        Text {
+            id: score
+            anchors.horizontalCenter: parent.horizontalCenter
+            font.pixelSize: parent.height * 0.6
+            font.bold: true
+            color: Theme.primaryColor
+            text: container.value
 
-                onTextChanged: {
-                    if (width > parent.width)
-                        scale = parent.width / width * 0.9
-                    else
-                        scale = 1
-                    ScoreItem.fade()
-                }
+            onTextChanged: {
+                if (width > parent.width)
+                    scale = parent.width / width * 0.9
+                else
+                    scale = 1
+                ScoreItem.fade()
             }
         }
     }

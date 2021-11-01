@@ -1,0 +1,40 @@
+* Sun Oct 10 2021 Matti Viljanen <matti.viljanen@kapsi.fi> 0.5.0
+- Noarch build
+- Clean leftover Harmattan project files
+- Move/update changelog
+- Fix AboutPage layout
+- Separate SettingsPage
+- Use more theme colors and sizes
+- Allow one letter names (previous work)
+- Fix typo (previous work)
+
+* Wed 10 Sep 2014 Fabien Proriol 0.3
+- SailfishOS build
+- Various fixes
+- Add sharing high score
+
+* Thu Apr 24 2014 Savkin Sergey <random.m3m@gmail.com> 0.3.3
+- Fix highscore saving
+
+* Whu Apr 24 2014 Savkin Sergey <random.m3m@gmail.com> 0.3.2
+- Score item animation
+- Custom animation speed
+- 'Game Over' screen
+
+* Wed Apr 16 2014 Savkin Sergey <random.m3m@gmail.com> 0.2.1
+- Fixed highscore saving
+
+* Wed 16 Apr 16 2014 Savkin Sergey <random.m3m@gmail.com> 0.2.0
+- Added score and highscore for each board size ( thanks to rubdos )
+
+* Savkin Sergey <random.m3m@gmail.com>  Tue Apr 15 2014 0.1.3
+- Change color for 4 tile ( thanks to rubdos )
+
+* Tue Apr 15 2014 Savkin Sergey <random.m3m@gmail.com> 0.1.2
+- Added proper harmattan icon ( thanks to  cnlpete )
+
+* Sun Apr 13 2014 Savkin Sergey <random.m3m@gmail.com> 0.1.1
+- Added 'About' dialog
+
+* Sun Mar 30 2014 Savkin Sergey <random.m3m@gmail.com> 0.1.0
+- First playable version.

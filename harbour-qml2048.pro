@@ -2,20 +2,30 @@
 
 TARGET = harbour-qml2048
 
-CONFIG += sailfishapp
+CONFIG += sailfishapp_qml
 
-
-# The .cpp file which was generated for your project. Feel free to hack it.
-SOURCES += main.cpp
-
-
-OTHER_FILES += \
+DISTFILES += \
+    qml/cover/CoverPage.qml \
+    qml/components/AboutLabel.qml \
+    qml/components/ScoreArea.qml \
+    qml/components/SwipeArea.qml \
+    qml/components/Cell.qml \
+    qml/components/Board.qml \
+    qml/components/ScoreItem.qml \
+    qml/components/FadeText.qml \
+    qml/pages/AboutPage.qml \
+    qml/pages/SettingsPage.qml \
+    qml/pages/Tile.qml \
+    qml/pages/MainPage.qml \
+    qml/pages/LosePage.qml \
+    qml/js/tile.js \
+    qml/js/board.js \
+    qml/js/scoreitem.js \
+    qml/js/speed.js \
+    qml/js/storage.js \
+    qml/harbour-qml2048.qml \
     harbour-qml2048.desktop \
-    rpm/qml2048.yaml \
+    rpm/harbour-2048.changes \
+    rpm/harbour-qml2048.yaml
 
-lupdate_only{
-    SOURCES += qml/*.qml \
-    SOURCES += qml/cover/*.qml \
-    SOURCES += qml/pages/*.qml \
-    SOURCES += qml/pages/*.js
-}
+SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172

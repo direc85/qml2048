@@ -3,5 +3,5 @@ Type=Application
 X-Nemo-Application-Type=silica-qt5
 Name=2048
 Icon=harbour-qml2048
-Exec=harbour-qml2048
+Exec=sailfish-qml harbour-qml2048
 

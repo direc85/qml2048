@@ -80,7 +80,7 @@ function updateBackground() {
 
     // create new background cells
     for (var i = 0; i < max_index; i++) {
-        var comp = Qt.createComponent("Cell.qml")
+        var comp = Qt.createComponent("../components/Cell.qml")
         if (comp.status == Component.Ready) {
             var cellObj = comp.createObject(container)
             if (cellObj == null) {
@@ -116,7 +116,7 @@ function addRandomTile() {
     listenActions = true
     if (cellsAvailable()) {
         var value = Math.random() < 0.9 ? 2 : 4
-        var comp = Qt.createComponent("Tile.qml")
+        var comp = Qt.createComponent("../components/Tile.qml")
         if (comp.status == Component.Ready) {
             var tileObj = comp.createObject(board)
             if (tileObj == null) {
